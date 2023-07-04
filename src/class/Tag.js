@@ -1,6 +1,6 @@
 const CoreModel = require("./CoreModel");
 
-class Tag {
+class Tag extends CoreModel {
   #name;
 
   constructor(name) {

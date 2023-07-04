@@ -33,7 +33,7 @@ class Answer extends CoreModel {
   }
 
   toString() {
-    return `Réponse ${this.id} : ${this.description}`;
+    return `Réponse ${this.id} à la question ${this.questionId} : ${this.description}`;
   }
 }
 

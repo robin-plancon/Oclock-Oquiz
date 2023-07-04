@@ -1,0 +1,80 @@
+const Answer = require("./src/class/Answer");
+const Level = require("./src/class/Level");
+const Question = require("./src/class/Question");
+const Quiz = require("./src/class/Quiz");
+const Tag = require("./src/class/Tag");
+const User = require("./src/class/User");
+
+console.log("Tests des classes");
+
+console.log("Tests de la classe Answer");
+const answer = new Answer("Ma réponse", 1);
+console.log(answer.toString());
+answer.id = 1;
+console.log(answer.id);
+answer.description = "Ma nouvelle réponse";
+console.log(answer.description);
+answer.questionId = 2;
+console.log(answer.questionId);
+console.log(answer.toString());
+console.log("Fin des tests de la classe Answer\n");
+
+console.log("Tests de la classe Level");
+const level = new Level("Débutant");
+console.log(level.toString());
+level.name = "Expert";
+console.log(level.name);
+console.log(level.toString());
+console.log("Fin des tests de la classe Level\n");
+
+console.log("Tests de la classe Question");
+const question = new Question("Ma question", "Mon anecdote", "Mon lien wiki", 1, 1, 1);
+console.log(question.toString());
+question.question = "Ma nouvelle question";
+console.log(question.question);
+question.anecdote = "Ma nouvelle anecdote";
+console.log(question.anecdote);
+question.wiki = "Mon nouveau lien wiki";
+console.log(question.wiki);
+question.levelId = 2;
+console.log(question.levelId);
+question.answerId = 2;
+console.log(question.answerId);
+question.quizId = 2;
+console.log(question.quizId);
+console.log(question.toString());
+console.log("Fin des tests de la classe Question\n");
+
+console.log("Tests de la classe Quiz");
+const quiz = new Quiz("Mon quiz", "Ma description", 1);
+console.log(quiz.toString());
+quiz.title = "Mon nouveau quiz";
+console.log(quiz.title);
+quiz.description = "Ma nouvelle description";
+console.log(quiz.description);
+quiz.userId = 2;
+console.log(quiz.userId);
+console.log(quiz.toString());
+console.log("Fin des tests de la classe Quiz\n");
+
+console.log("Tests de la classe Tag");
+const tag = new Tag("Mon tag");
+console.log(tag.toString());
+tag.name = "Mon nouveau tag";
+console.log(tag.name);
+console.log(tag.toString());
+console.log("Fin des tests de la classe Tag\n");
+
+console.log("Tests de la classe User");
+const user = new User("Mon email", "Mon password", "Mon prénom", "Mon nom");
+console.log(user.toString());
+user.email = "Mon nouvel email";
+console.log(user.email);
+user.password = "Mon nouveau password";
+console.log(user.password);
+user.firstname = "Mon nouveau prénom";
+console.log(user.firstname);
+user.lastname = "Mon nouveau nom";
+console.log(user.lastname);
+console.log(user.toString());
+console.log("Fin des tests de la classe User\n");
