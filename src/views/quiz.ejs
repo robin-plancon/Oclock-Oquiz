@@ -1,0 +1,55 @@
+<%- include("partials/header") %>
+
+<main class="container py-4">
+
+  <h1 class="text-center m-2"><%= quiz.title %></h1>
+
+  <p class="text-center m-2"><%= quiz.description %></p>
+
+  <h2 class="small text-end">Par <%= quiz.author.firstname %> <%= quiz.author.lastname %></h2>
+  <!-- <h2 class="small text-end">Date de création : <%# quiz.created_at.toLocaleDateString() %></h2> -->
+  <h2 class="small text-end">Date de création : 
+    <%= quiz.created_at.toLocaleDateString(
+      'fr-FR',
+      { 
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }
+    ) %>
+  </h2>
+
+  <h3>Thèmes</h3>
+  <ul class="mb-4 p-0">
+    <!-- On affiche tous les tags du quiz -->
+    <% quiz.tags.forEach(tag => { %>
+      <li class="badge bg-primary"><%= tag.name %></li>
+    <% }) %>
+  </ul>
+
+  <h3>Questions</h3>
+
+  <!-- On affiche toutes les questions -->
+  <% quiz.questions.forEach(question => { %>
+    <span class="badge bg-info"><%= question.level.name %></span>
+
+    <p class="fw-bold mb-1"><%= question.question %></p>
+
+    <!-- On veut afficher les propositions de réponses pour la question courante -->
+    <div class="mb-3 ms-2">
+      <% question.propositions.forEach(proposition => { %>
+        <div>
+          <input type="radio" id="<%= proposition.id %>" name="<%= question.id %>" value="<%= proposition.id %>">
+          <label for="<%= proposition.id %>"><%= proposition.description %></label>
+        </div>
+      <% }) %>
+    </div>
+
+    <p class="fst-italic text-secondary"><%= question.anecdote %></p>
+  <% }) %>
+    
+  <button class="d-block mx-auto btn btn-primary mb-4">Envoyer</button>
+</main>
+
+<%- include("partials/footer") %>
