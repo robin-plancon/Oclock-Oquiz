@@ -1,4 +1,5 @@
 const CoreModel = require('./CoreModel');
+const db = require('../database');
 
 class User extends CoreModel {
   firstname;
@@ -100,9 +101,9 @@ class User extends CoreModel {
   async update() {
     try {
       const sql = `UPDATE "user" SET firstname = $1, lastname = $2, email = $3, password = $4 WHERE id = $5`;
-      const { rows } = await db.query(sql, [this.firstname, this.lastname, this.#email, this.#password, this.id]);
-
-      if (!rows[0]) {
+      const result = await db.query(sql, [this.firstname, this.lastname, this.#email, this.#password, this.id]);
+      
+      if (result.rowCount === 0) {
         throw new Error(`Error while updating user`);
       }
 
@@ -116,9 +117,9 @@ class User extends CoreModel {
   async delete() {
     try {
       const sql = `DELETE FROM "user" WHERE id = $1`;
-      const { rows } = await db.query(sql, [this.id]);
+      const result = await db.query(sql, [this.id]);
 
-      if (!rows[0]) {
+      if (result.rowCount === 0) {
         throw new Error(`Error while deleting user`);
       }
 

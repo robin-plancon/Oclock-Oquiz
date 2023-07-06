@@ -31,7 +31,7 @@ async function testModels() {
 
 
   // == Update Tag
-  tag.name = "Starship"; // On modifie l'objet tag
+  tag.name = "storm"; // On modifie l'objet tag
   await tag.update(); // On repercute la modif en DB
   console.log(tag); // On log la modif
 
@@ -50,7 +50,7 @@ async function testModels() {
     email: "jean.bon@oui.com",
     password: "1234",
   });
-  await newUser.create();
+  await newUser.insert();
 
   // === Delete User
   const newUserToDelete = new User({
@@ -59,16 +59,18 @@ async function testModels() {
     email: "jean.mauvais@non.com",
     password: "1234",
   });
-  await newUserToDelete.create();
+  await newUserToDelete.insert();
   console.log(newUserToDelete);
 
   const isDeletedUser = await newUserToDelete.delete();
   console.log(isDeletedUser);
 
   // === Update User
-  user.firstname = "Jeanne";
+  user.firstname = "Michel";
   await user.update();
   console.log(user);
 }
 
-testModels();
+// testModels();
+
+module.exports = testModels;

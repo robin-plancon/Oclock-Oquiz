@@ -4,7 +4,7 @@
 const { Client } = require('pg');
 
 // 2. créer un client
-const client = new Client(); // pas besoin de préciser, PG va chercher tout seul les infos dans le .env
+const client = new Client(process.env.PG_URL); // pas besoin de préciser, PG va chercher tout seul les infos dans le .env
 
 // 3. connecter le client
 client.connect();

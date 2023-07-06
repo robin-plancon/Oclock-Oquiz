@@ -1,5 +1,5 @@
 const CoreModel = require('./CoreModel');
-const dbClient = require('../dataMapper/dbClient');
+const dbClient = require('../database');
 
 class Tag extends CoreModel {
   name;
@@ -77,6 +77,7 @@ class Tag extends CoreModel {
   // Cette méthode sera appelée pour supprimer une entrée de la DB
   async delete() {
     try {
+      console.log(this);
       const result = await dbClient.query('DELETE FROM "tag" WHERE id = $1', [this.id]);
 
       if (result.rowCount === 0) {
@@ -92,8 +93,9 @@ class Tag extends CoreModel {
   // Cette méthode sera appelée pour mettre à jour une entrée en DB
   async update() {
     try {
+      console.log(this);
       const result = await dbClient.query(
-        'UPDATE tag SET "name" = $1 WHERE "id" = $2',
+        'UPDATE "tag" SET "name" = $1 WHERE "id" = $2',
         [this.name, this.id]
       );
 
