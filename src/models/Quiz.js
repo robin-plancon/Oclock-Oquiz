@@ -1,25 +1,22 @@
-const CoreModel = require('./CoreModel');
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../databaseSequelize');
 
-class Quiz extends CoreModel {
-  title;
-  description;
+class Quiz extends Model {}
 
-  constructor(obj) {
-    super(obj);
-
-    if (typeof obj.title !== "string") {
-      throw new Error("Quiz title must be a string");
-    }
-    this.title = obj.title;
-
-    if (typeof obj.description !== "string") {
-      throw new Error("Quiz description must be a string");
-    }
-    this.description = obj.description;
+Quiz.init(
+  {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'quiz',
   }
-}
-
-// const newQuiz = new Quiz({ id: 14, title: "toto", description: "coucou" });
-// console.log(newQuiz.id);
+);
 
 module.exports = Quiz;

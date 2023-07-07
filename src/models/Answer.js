@@ -1,26 +1,21 @@
-const CoreModel = require('./CoreModel');
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../databaseSequelize');
 
-class Answer extends CoreModel {
+class Answer extends Model {}
 
-    description; 
-
-    constructor(obj){
-        super(obj)
-
-        // type guards and format checkings 
-        if(typeof obj.description !== "string" || typeof obj.description === null){
-
-            throw new Error("Answer description must be a string or not null");
-
-        }
-
-        this.description = obj.description;
-
-    }
-
-
-}
-
+Answer.init(
+  {
+    // on vient renseinger les attributs
+    // pas besoin d'eimplément l'id, c'est géré par Sequelize
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    tableName: 'answer',
+  }
+);
 
 module.exports = Answer;
-
